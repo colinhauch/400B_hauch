@@ -1,0 +1,5 @@
+
+# Ignore osX files
+.DS_Store
+
+MW_000.txt
