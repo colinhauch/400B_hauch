@@ -14,11 +14,6 @@ import astropy.units as u
 # global variables are capitalized
 # local variables are lowercased
 
-# Define file name
-# this is a hardcoded file name -- I'm not a fan
-# could make the file name an input in the command to run this script
-Filename = "MW_000.txt"
-
 # define the function Read that takes the name of the file as an input
 def Read(filename):
 	# open the file
@@ -57,11 +52,14 @@ def Read(filename):
 	# return values and data for future use
 	return time, total, data
 
-	# label, value = line1.split()
-	# time = float(value)*10.0*u.Myr
 
-# collect united values from header of the file
-Time, Total, Data = Read(Filename)
+# # testing purposes
+# # collect united values from header of the file
+# Time, Total, Data = Read("MW_000.txt")
+# print(Time)
+# print(Total)
+# print(Data)
+
 
 
 # # test print of certain data values:
