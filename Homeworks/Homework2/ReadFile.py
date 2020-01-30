@@ -15,6 +15,7 @@ import astropy.units as u
 # local variables are lowercased
 
 # define the function Read that takes the name of the file as an input
+# RETURNS: time, total, data
 def Read(filename):
 	# open the file
 	file = open(filename, 'r')
