@@ -21,18 +21,25 @@ def ParticleInfo(filename, particleType, particleNumber):
 
 	time, total, data = Read(filename)
 
+	index = np.where(data['type'] == particleType)
+
 	# Fetch appropriate variables of a particular particle number within the given particleType and add units
 	# NOTE: particleNumber refers to the number of particle OF THE GIVEN particleType
-	# NOTE: not certain if order of operations matters with appending units and rounding -- I'm assuming it wont matter
-	pos_x = float(data['x'][particleNumber])*u.kpc
-	pos_y = float(data['y'][particleNumber])*u.kpc
-	pos_z = float(data['z'][particleNumber])*u.kpc
+	# 
+	# For clarity
+	# data 					matrix representation of dataset from filename
+	# data['x']				list of all 'x' values from dataset
+	# data['x'][index]		list of all 'x' values that have 'type' == particleType
+	# data['x'][index][n]	nth element of the list of all 'x' values that have 'type' == particleType
+	pos_x = float(data['x'][index][particleNumber])*u.kpc
+	pos_y = float(data['y'][index][particleNumber])*u.kpc
+	pos_z = float(data['z'][index][particleNumber])*u.kpc
 
-	vel_x = float(data['vx'][particleNumber])*(u.km/u.s)
-	vel_y = float(data['vy'][particleNumber])*(u.km/u.s)
-	vel_z = float(data['vz'][particleNumber])*(u.km/u.s)
+	vel_x = float(data['vx'][index][particleNumber])*(u.km/u.s)
+	vel_y = float(data['vy'][index][particleNumber])*(u.km/u.s)
+	vel_z = float(data['vz'][index][particleNumber])*(u.km/u.s)
 
-	mass = (float(data['m'][particleNumber])* 10**10) *u.Msun
+	mass = (float(data['m'][index][particleNumber])* 10**10) *u.Msun
 
 
 	# caluclate magnitudes (if needed) and round values to three decimal places
@@ -43,10 +50,10 @@ def ParticleInfo(filename, particleType, particleNumber):
 	# return values for future use.
 	return position, velocity, mass
 
-# # test call of the function
-# Position, Velocity, Mass = ParticleInfo("MW_000.txt",2.0,99)
+# test call of the function
+Position, Velocity, Mass = ParticleInfo("MW_000.txt",2.0,99)
 
-# print(Position, Velocity, Mass)
+print(Position, Velocity, Mass)
 
 
 
