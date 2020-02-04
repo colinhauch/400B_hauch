@@ -2,5 +2,7 @@
 # Ignore osX files
 .DS_Store
 *.icloud
+*.pyc
+__pycache__
 
 MW_000.txt
