@@ -6,7 +6,6 @@
 # Keep in mind this is just a template; you don't need to follow every step and feel free to change anything.
 # We also strongly encourage you to try to develop your own method to solve the homework.
 ###############################################################################
-
 # import modules
 import numpy as np
 import astropy.units as u
@@ -130,9 +129,12 @@ class CenterOfMass:
             # Change the frame of reference to the newly computed COM.                                                 
             # subtract the new COM
             # write your own code below
-            xNew = self.x - XCOM2
-            yNew = self.y - XCOM2
-            zNew = self.z - XCOM2
+            # xNew = self.x - XCOM2
+            # yNew = self.y - XCOM2
+            # zNew = self.z - XCOM2
+            xNew = x2 - XCOM2
+            yNew = y2 - XCOM2
+            zNew = z2 - XCOM2
             RNEW = np.sqrt(xNew**2 + yNew**2 + zNew**2)
 
             # set the center of mass positions to the refined values                                                   
@@ -145,8 +147,8 @@ class CenterOfMass:
             COMP = [XCOM, YCOM, ZCOM]
 
         # set the correct units usint astropy and round all values
-        COMP *= u.kpc
         COMP = np.around(COMP,2)
+        COMP *= u.kpc
 
         # and then return the COM positon vector
         return COMP
@@ -175,8 +177,8 @@ class CenterOfMass:
         # determine the velocity and mass of those particles within the mas radius
         # write your own code below
         vxnew = self.vx[indexV]
-        vynew = self.vx[indexV]
-        vznew = self.vx[indexV]
+        vynew = self.vy[indexV]
+        vznew = self.vz[indexV]
         mnew  = self.m[indexV]
         
         # compute the center of mass velocity using those particles
@@ -188,8 +190,8 @@ class CenterOfMass:
         # round all values
         # write your own code below
         COMV = [VXCOM, VYCOM, VZCOM]
-        COMV = COMV * u.km / u.s
         COMV = np.around(COMV,2)
+        COMV = COMV * u.km / u.s
 
         # return the COM vector                                                                                        
         return COMV
@@ -235,9 +237,16 @@ print("M33 COMV = {}".format(M33_COMV))
 sep1 = np.absolute(MW_COMP - M31_COMP)
 sep2 = np.absolute(M33_COMP - M31_COMP)
 
+# calulate separation between galaxies
+vel1 = np.absolute(MW_COMV - M31_COMV)
+vel2 = np.absolute(M33_COMV - M31_COMV)
+
 # print separations
-print("Magnitude of Separation between MW and M31:  {}".format(sep1))
-print("Magnitude of Separation between M33 and M31: {}".format(sep2))
+print("Magnitude of Separation between MW and M31:  {}".format(np.around(np.linalg.norm(sep1),2)))
+print("Magnitude of Separation between M33 and M31: {}".format(np.around(np.linalg.norm(sep2),2)))
+
+print("Magnitude of velocity between MW and M31:  {}".format(np.around(np.linalg.norm(vel1),2)))
+print("Magnitude of velocity between M33 and M31: {}".format(np.around(np.linalg.norm(vel2),2)))
 
 # print answer to Question 4
 print("\nQuestion 4: The iterative process used to determine the COM is important because as the galaxies merge, they begin to significantly affect each other and transfer material (this is the definition of merging). An iterative process that we have written continually lets us calculate the center of mass of all the particles within a radius, so we can know the COM infomation even though the galaxies may have merged.")
