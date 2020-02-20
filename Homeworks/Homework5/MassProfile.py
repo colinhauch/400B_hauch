@@ -77,9 +77,9 @@ class MassProfile:
 
 		for element in radii:
 			# for each distance given, find all the particles within that distance
-			index = np.where(particleRadii <= element)
+			index1 = np.where(particleRadii <= element)
 
-			particleMasses = self.m[index]
+			particleMasses = self.m[index1]
 
 			massWithinElement = np.sum(particleMasses)
 			#print(massWithinElement)
@@ -129,7 +129,7 @@ class MassProfile:
 
 		return circVelos
 
-	
+
 
 r = np.arange(0.25, 30.5, 1.5); print(r)
 
