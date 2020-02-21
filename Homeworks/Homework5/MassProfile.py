@@ -129,6 +129,9 @@ class MassProfile:
 
 		return circVelos
 
+	def CircularVelocityTotal(self, radii):
+		pass
+
 
 
 r = np.arange(0.25, 30.5, 1.5); print(r)
