@@ -172,7 +172,7 @@ class MassProfile:
 		#
 		# RETURNS:
 		# 		array total circular velocities within the given radii
-		darkMass, diskMass, bulgeMass = MassEnclosedTotal(radii)
+		darkMass, diskMass, bulgeMass = self.MassEnclosedTotal(radii)
 
 		totalMass = darkMass + diskMass + bulgeMass
 
@@ -189,11 +189,11 @@ class MassProfile:
 		# 		within the given radius
 
 
-		return np.around(np.sqrt((G*HernquistMass(radii,a,darkMass))/radii),2)
+		return np.around(np.sqrt((G*self.HernquistMass(r,a,darkMass))/r),2)
 
 
 
-r = np.arange(0.25, 30.5, 1.5); print(r)
+r = np.arange(0.25, 30.5, 1.15); print(r)
 
 
 
@@ -219,20 +219,35 @@ label_size = 22
 matplotlib.rcParams['xtick.labelsize'] = label_size 
 matplotlib.rcParams['ytick.labelsize'] = label_size
 
-# 
-plt.plot(r, MWdarkMass,linewidth = 5, label='MW dark matter',color="blue",linestyle="-")
-plt.plot(r, MWdiskMass,linewidth = 5, label='MW disk matter',color="blue",linestyle=":")
-plt.plot(r, MWbulgeMass,linewidth = 5, label='MW bulge matter',color="blue",linestyle="--")
+plt.xlabel(r'Radius (kpc)', fontsize=22)
+plt.ylabel(r'Velocity (km/s)', fontsize=22)
 
-# 
-plt.plot(r, M31darkMass,linewidth = 5, label='M31 dark matter',color="red",linestyle="-")
-plt.plot(r, M31diskMass,linewidth = 5, label='M31 disk matter',color="red",linestyle=":")
-plt.plot(r, M31bulgeMass,linewidth = 5, label='M31 bulge matter',color="red",linestyle="--")
+# ax.semilogy(r,M31totalMass,color='red',linewidth=5,label='M31 Total')
+# ax.semilogy(r,M31darkMass,color='blue',linewidth=5,label='M31 dark matter')
+# ax.semilogy(r,M31diskMass,color='green',linewidth=5,label='M31 disk matter')
+# ax.semilogy(r,M31bulgeMass,color='cyan',linewidth=5,label='M31 bulge matter')
+# ax.semilogy(r,M31.HernquistMass(r,1,M31darkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
 
-# 
-plt.plot(r, M33darkMass,linewidth = 5, label='M33 dark matter',color="green",linestyle="-")
-plt.plot(r, M33diskMass,linewidth = 5, label='M33 disk matter',color="green",linestyle=":")
+# ax.semilogy(r,M31totalMass,color='red',linewidth=5,label='M31 Total')
+# ax.semilogy(r,M31darkMass,color='blue',linewidth=5,label='M31 dark matter')
+# ax.semilogy(r,M31diskMass,color='green',linewidth=5,label='M31 disk matter')
+# ax.semilogy(r,M31bulgeMass,color='cyan',linewidth=5,label='M31 bulge matter')
+# ax.semilogy(r,M31.HernquistMass(r,1,M31darkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
 
+# ax.semilogy(r,M33totalMass,color='red',linewidth=5,label='M33 Total')
+# ax.semilogy(r,M33darkMass,color='blue',linewidth=5,label='M33 dark matter')
+# ax.semilogy(r,M33diskMass,color='green',linewidth=5,label='M33 disk matter')
+# ax.semilogy(r,M33.HernquistMass(r,1,M33darkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
+
+
+# plt.plot(r,MW.CircularVelocityTotal(r),color='red',linewidth=5,label='MW Total')
+# plt.plot(r,MW.HernquistVCirc(r,1,MWdarkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
+
+# plt.plot(r,M31.CircularVelocityTotal(r),color='red',linewidth=5,label='M31 Total')
+# plt.plot(r,M31.HernquistVCirc(r,1,M31darkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
+
+plt.plot(r,M33.CircularVelocityTotal(r),color='red',linewidth=5,label='M33 Total')
+plt.plot(r,M33.HernquistVCirc(r,1,M33darkMass),color='orange',linewidth=5,label='Hernquist Profile, a=1')
 
 
 
