@@ -55,10 +55,11 @@ class CenterOfMass:
         return Acom, Bcom, Ccom
     
     
-    def COM_P(self, delta):
+    def COM_P(self, delta, VolDec):
         # Function to specifically return the center of mass position and velocity                                         
         # input:                                                                                                                                                                                        
-        #        delta (tolerance)                                                                                         
+        #       delta (tolerance)   
+        #       VolDec - defines the amount by which RMAX is decreased                                                                                      
         # returns: One vector, with rows indicating:                                                                                                                                                                            
         #       3D coordinates of the center of mass position (kpc)                                                             
 
@@ -84,8 +85,9 @@ class CenterOfMass:
         RNEW = np.sqrt(xNew**2 + yNew**2 + zNew**2)
 
         # find the max 3D distance of all particles from the guessed COM                                               
-        # will re-start at half that radius (reduced radius)                                                           
-        RMAX = max(RNEW)/2.0
+        # will re-start at half that radius (reduced radius)  
+        # MODIFICATION: division by 2 changed to division by VolDec                                                         
+        RMAX = max(RNEW)/VolDec
         
         # pick an initial value for the change in COM position                                                      
         # between the first guess above and the new one computed from half that volume
@@ -122,7 +124,7 @@ class CenterOfMass:
             # Before loop continues, reset : RMAX, particle separations and COM                                        
 
             # reduce the volume by a factor of 2 again                                                                 
-            RMAX = RMAX/2.0
+            RMAX = RMAX/VolDec
             # check this.                                                                                              
             #print ("maxR", maxR)                                                                                      
 

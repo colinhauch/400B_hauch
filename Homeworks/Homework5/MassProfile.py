@@ -83,7 +83,7 @@ class MassProfile:
 			index1 = np.where(particleRadii <= element)
 
 
-			particleMasses = self.m[index1]
+			particleMasses = self.m[index][index1]
 
 			massWithinElement = np.sum(particleMasses)
 			#print(massWithinElement)
@@ -136,35 +136,17 @@ class MassProfile:
 		# RETURNS:
 		# 		array circular velocities
 
-		# create an index of the particles of the desired type
-		index = np.where(self.data['type'] == particleType)
+		# From solution:
+		# create array of masses within each radius in radii
+		Menc = self.MassEnclosed(particleType,radii)
 
-		# Subtract the COM position from each component value for every particle
-		# of the desired type
-		xdists = self.x[index] - COM_P[0].value
-		ydists = self.y[index] - COM_P[1].value
-		zdists = self.z[index] - COM_P[2].value
+		# calculate circular speed assuming spherical symmetry
+		# array of speeds according to "radii", in urnts of kpc/Gyr
 
-		# calculate magnitude of position vectors
-		particleRadii = np.sqrt(xdists**2 + ydists**2 + zdists**2)
+        Vcirc = np.round(np.sqrt(G*Menc/radii/u.kpc),2)
 
-		# create an empty array
-		circVelos = np.array([])
-
-		# for each radii in particle radii list, 
-		for element in particleRadii:
-
-			# pass that single value radii, as an array, to the MassEnclosed function
-			# which returns an ARRAY. The returned array in this case will be of length 1
-			M = MassEnclosed([element])
-
-			# calculate the circular velocity for that radii
-			circVelo = np.sqrt(G*M[0]/element)
-
-			# append the calculated circular velocity to the array that was initlized before
-			circVelos = np.append(circVelos, circVelo)
-
-		return circVelos
+        # return array
+        return  Vcirc
 
 	def CircularVelocityTotal(self, radii):
 		# INPUTS:
