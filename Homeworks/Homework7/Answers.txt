@@ -1,0 +1,7 @@
+1. Done
+
+2. Plots are similar in when t is small, which makes sense. They should be starting with nearly identical initial conditions. But, at later t, the plots deviate. The simulation oscillates with a much higher frequency. The analytical plot technically does oscillate but at a much lower frequency.
+
+3. The presence of the MW was omitted from some of our calculations. I think including the MW would make the difference much smaller.
+
+4. MW could be added to the program. Small modifications would have to be made. The center of mass would have to be of the system, not just two bodies. And code would also have to be written to fasciliate the relationships between all of the bodies to all of the other bodies. 
