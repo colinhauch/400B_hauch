@@ -5,6 +5,7 @@
 # import relavent modules
 import numpy as np
 import astropy.units as u
+from ReadFile import Read
 
 def findParticlesOfInterest(filename,particleType=2):
 	# FUNCTION:
@@ -27,15 +28,17 @@ def findParticlesOfInterest(filename,particleType=2):
 
 	# percent range of similarity to sun
 	# EX: "massSIM = 0.1" means within 10% of the sun's mass
-	pos_SIM = 0.1
-	vel_SIM = 0.1
-	mass_SIM = 0.1
+	posSIM = 0.1
+	velSIM = 0.1
+	massSIM = 0.1
 
-	sunMass 	= u.Msun.value
+	#sunMass 	= u.Msun.value
 	sunRadius 	= 8 * u.kpc
 	#sunVelocity = 0 * u.km / u.s
 
-	for i in range(len(data)):
+	print(len(index))
+
+	for i in range(len(index)):
 		# Fetch appropriate variables of a particular particle number within the given particleType and add units
 		# NOTE: i refers to the number of particle OF THE GIVEN particleType
 		# 
@@ -60,10 +63,13 @@ def findParticlesOfInterest(filename,particleType=2):
 		velocity = np.around(np.sqrt(vel_x**2 + vel_y**2 + vel_z**2), 3)
 		mass = np.around(mass, 3)
 
-		if (sunRadius*(1-posSIM)) < position < (sunRadius*(1+posSIM)):
-			if (sunMass*(1-massSIM)) < mass < (sunMass*(1+massSIM)):
-				#if velocity
-				POI.append(i)
+		if (sunRadius*(1-posSIM)) < abs(position) < (sunRadius*(1+posSIM)):
+			#if (sunMass*(1-massSIM)) < mass < (sunMass*(1+massSIM)):
+			#if velocity
+			POI = np.append(POI,i)
+			print("found one: particle #"+str(i))
+		else:
+			break #print("nope")
 
 	return POI
 
