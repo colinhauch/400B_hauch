@@ -1,0 +1,84 @@
+Colin Hauch
+
+
+
+My research project is to create a visualization of the local group merger from the perspective of a sun-like-particle within M31. 
+
+I have outlined previously my goal to create multiple plots. The primary two are presented in conjunction with each other. The first, a Mollweide Projection plot of the sky from the perspective of the view point particle (VPP). In the beginning this will be a static plot (representing a single instance in time). I hope to be able to make a series of these plots to turn into a dynamic plot, or movie. The second plot is from a point in space far from the center of mass of the system, looking towards the center of mass. This will provide context for the Molleweide projection plot. I think these in conjunction can be used to create an intuitive visualization of the senario. Various parameters can be used to filter which particles are visualized which would yield more information per plot. Some of these possible parameters are listed below. 
+
+Possible Visualization Parameters
+* Luminosity Filter: Only display particles at or above a certain luminosity (using mass-luminosity relation). Only applies to disk and bulge particles.
+* Mass filter: Only display particles between specified mass ranges.
+* Distance Filter: Only display particles between specified radii ranges of the VPP. Could use a series of radii and plot the various ranges in different colors. Useful in conjuntion with color filter. 
+* Propablisitic Filter: Make the chances of plotting a particlar particle proportional to some other parameter ("distance from VPP" seems like an obivious choice). I hope the right combination of parameters would produce a plot that looks similar what is seen in out sky.
+
+** The size and color of various points can be linked to other parameters. This might include plotting more massive or brighter particles as larger or the color of each particle being linked to the galaxy of orgin.
+
+** Lots of combinations of these parameter filters could be used. For example:
+
+Display all particles within 30 kpc of the VPP as well as all particles outside 30 kpc that also have a mass of at least 10 mSun. All particles are colored according to their original galaxy. 
+
+
+Concerns:
+
+I'm worried that the high resolution files will have so many particles that no decernable or relevant information will be able to be displayed. Hence the need to somehow limit the total number of particles displayed.
+
+
+
+
+------------- CODE OUTLINE -------------
+
+* Create script that creates ".npy" for each snap number. This will expedite the process of reading in the data.
+
+* Create program to determine cannidate particles.
+	* Filter by various parameters (initial distance from M31 Pcom, initial rotational speed, etc).
+	* Filter until a small number of particles exist.
+	* Select a particle as VPP (but remember that that particle may change! Don't hardcode that particle as the VPP).
+
+	* MAYBE: Plot the path of the VPP on 3D plot. Could be plotted over low resolution visualization of collision. 
+
+* Create program to filter remaining particles by specified parameters.
+	* Parse particles and record index of particles that satisify specified parameters.
+	* Save the index of relevant particles.
+	* Pass index of relevant particles to plotter program.
+
+	** there maybe be multiple indexes for the various parameters
+
+* Create plotter program.
+	* Get displacement vector between VPP and every other plotted particle
+	* Convert displacement vector to coordinates Mollweide plot can handle (geographic coords).
+	* Plot relevant particles.
+	* Save plots.
+
+* Compile plots into movie, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
