@@ -117,7 +117,11 @@ def generateImage(snapNumber, vppIndex):
 
 	#plt.show()
 
+<<<<<<< HEAD
 	plt.savefig("LowResMW2/"+snapNumber)
+=======
+	plt.savefig("LowResMW/"+snapNumber)
+>>>>>>> aff39bd93840c21946266c71e3adef587ab1a285
 	plt.close()
 
 	return
