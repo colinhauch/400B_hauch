@@ -10,3 +10,6 @@ M31_*.txt
 M33_*.txt
 
 Orbit_*.txt
+*.npy
+
+*.png

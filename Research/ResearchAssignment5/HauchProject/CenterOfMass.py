@@ -21,7 +21,8 @@ class CenterOfMass:
         # Initialize the instance of this Class with the following properties:
     
         # read data in the given file using Read
-        self.time, self.total, self.data = Read(filename)                                                                                             
+        #self.time, self.total, self.data = Read(filename)  
+        self.data = np.load(filename)                                                                                           
 
         #create an array to store indexes of particles of desired Ptype                                
         self.index = np.where(self.data['type'] == ptype)

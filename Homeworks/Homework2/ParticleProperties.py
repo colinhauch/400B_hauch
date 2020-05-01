@@ -10,6 +10,17 @@
 import numpy as np
 import astropy.units as u
 from ReadFile import Read
+from astropy.constants import G
+
+# import plotting modules
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.colors import LogNorm
+#%matplotlib inline
+
+# my modules
+from CenterOfMass import CenterOfMass
+from MassProfile import MassProfile
 
 
 # define a function that takes parameters of information desired and fetches that info from the data file
