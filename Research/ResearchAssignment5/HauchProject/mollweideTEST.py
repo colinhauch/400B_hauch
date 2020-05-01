@@ -62,8 +62,9 @@ def plot_mwd(RA,Dec,org=0,title='Mollweide projection', projection='mollweide'):
     tick_labels = np.array([150, 120, 90, 60, 30, 0, 330, 300, 270, 240, 210])
     tick_labels = np.remainder(tick_labels+360+org,360)
     fig = plt.figure(figsize=(10, 5))
-    ax = fig.add_subplot(111, projection=projection, axisbg ='LightCyan')
-    ax.scatter(np.radians(x),np.radians(Dec))  # convert degrees to radians
+    ax = fig.add_subplot(111, projection=projection)
+    #ax.scatter(np.radians(x),np.radians(Dec))  # convert degrees to radians
+    ax.hist2d(np.radians(x),np.radians(Dec))
     ax.set_xticklabels(tick_labels)     # we add the scale on the x axis
     ax.set_title(title)
     ax.title.set_fontsize(15)
