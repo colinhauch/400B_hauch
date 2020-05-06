@@ -17,7 +17,6 @@ productSuffix = ".npy"
 # snap number from 000 to 801
 
 # loop through each filename
-# C
 for i in range(802):
 
 	# gen snap number from 000 to 801
