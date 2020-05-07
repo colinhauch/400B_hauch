@@ -1,0 +1,43 @@
+\documentclass[twocolumn]{aastex63}
+
+
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
+
+\received{June 1, 2019}
+\revised{January 10, 2019}
+\accepted{\today}
+%% Command to document which AAS Journal the manuscript was submitted to.
+%% Adds "Submitted to " the argument.
+\submitjournal{AJ}
+
+\shorttitle{Demo}
+\shortauthors{ASTR400B}
+
+\begin{document}
+
+\title{Demo for ASTR400B Referencing March 24th }
+\author{ASTR400B Class}
+
+
+
+\section{Introduction}
+\label{sec:intro}
+
+This is our intro! 
+
+This study utilizes the simulations by \cite{vdm12}.
+
+Studies have found that the Milky Way and Andromeda will collide in 4 Gyr \citep[e.g.][and many others]{vdm12,vdm19}. 
+
+
+\section{Methods}
+
+We use the simulations described in $\S$ \ref{sec:intro}.
+
+
+\bibliography{demo}{}
+\bibliographystyle{aasjournal}
+
+\end{document}

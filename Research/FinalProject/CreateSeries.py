@@ -41,17 +41,16 @@ def generateImage(snapNumber, vppIndex):
 	# pull out vpp data to avoid divByZero errors
 	diskParticleData = np.delete(snapData[index],vppIndex)
 
-	
+	# Shift the coordinates such that the VPP is at the origin
 	### Uncomment following lines to use VPP as view point
 	### Otherwise, Center of Mass of M31 will be used
-	# fetch all data
 	# xdata = diskParticleData['x'] - vpp[2]
 	# ydata = diskParticleData['y'] - vpp[3]
 	# zdata = diskParticleData['z'] - vpp[4]
 
 	############## Center of Mass of M31 ############
 
-	M31com = CenterOfMass(filenameM31,2)
+	M31com = CenterOfMass(filenameMW,2)
 	M31_comP = M31com.COM_P(0.1)
 
 	xdata = diskParticleData['x'] - M31_comP[0].value 
@@ -61,8 +60,8 @@ def generateImage(snapNumber, vppIndex):
 	#################################################
 
 	# Declear number of bins for each direction
-	raBINS = 60
-	decBINS = 60
+	raBINS = 60*6
+	decBINS = 60*6
 
 	# for creating 2D histogram
 	# create arrays for each axis, creating the bins
@@ -113,7 +112,7 @@ def generateImage(snapNumber, vppIndex):
 	plt.title("snap = "+snapNumber)
 
 	# Plot the 2D histogram
-	im = ax.pcolormesh(Lon,Lat,np.transpose(C), cmap=plt.cm.jet)
+	im = ax.pcolormesh(Lon,Lat,C, cmap=plt.cm.jet)
 	
 	### Test plot as a square plot using standard matplotlib functions
 	# ax = fig.add_subplot(111)
@@ -124,7 +123,7 @@ def generateImage(snapNumber, vppIndex):
 	#plt.show()
 
 	# save plot in this folder with the snap number string as the name, .png format
-	plt.savefig("testSeries1/"+snapNumber)
+	plt.savefig("MWseries3/"+snapNumber)
 
 	# close figure
 	plt.close()
