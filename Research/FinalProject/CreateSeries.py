@@ -50,7 +50,7 @@ def generateImage(snapNumber, vppIndex):
 
 	############## Center of Mass of M31 ############
 
-	M31com = CenterOfMass(filenameMW,2)
+	M31com = CenterOfMass(filenameM31,2)
 	M31_comP = M31com.COM_P(0.1)
 
 	xdata = diskParticleData['x'] - M31_comP[0].value 
@@ -123,7 +123,7 @@ def generateImage(snapNumber, vppIndex):
 	#plt.show()
 
 	# save plot in this folder with the snap number string as the name, .png format
-	plt.savefig("MWseries3/"+snapNumber)
+	plt.savefig("M31series3/"+snapNumber)
 
 	# close figure
 	plt.close()

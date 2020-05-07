@@ -44,7 +44,7 @@ def generateImage(snapNumber, vppIndex):
 
 	############## Center of Mass of M31 ############
 
-	M31com = CenterOfMass(filenameMW,2)
+	M31com = CenterOfMass(filenameM31,2)
 	M31_comP = M31com.COM_P(0.1)
 
 	xdata = diskParticleData['x'] - M31_comP[0].value 
@@ -117,11 +117,8 @@ def generateImage(snapNumber, vppIndex):
 
 	#plt.show()
 
-<<<<<<< HEAD
-	plt.savefig("LowResMW2/"+snapNumber)
-=======
-	plt.savefig("LowResMW/"+snapNumber)
->>>>>>> aff39bd93840c21946266c71e3adef587ab1a285
+	plt.savefig("LowResSeries3/"+snapNumber)
+
 	plt.close()
 
 	return
